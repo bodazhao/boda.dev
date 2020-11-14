@@ -10,10 +10,11 @@ const Card = ({ post }: { post: ImportedPost }) => {
   } = post;
 
   return (
-    <div className="flex items-baseline mb-10">
-      <p className="text-sm text-gray-700 mb-2 mr-3 lg:mr-10">
-        {formatDate(meta.created)}
-      </p>
+    <div className="flex mb-10">
+      <div className="text-gray-700 mt-2 lg:mt-4 mr-3 lg:mr-10">
+        <p className="text-sm mb-2">{formatDate(meta.created)}</p>
+        <p className="text-xs text-right">{meta.reading_time} minutes</p>
+      </div>
 
       <div className="flex-1">
         <Link href={"/blog" + path}>

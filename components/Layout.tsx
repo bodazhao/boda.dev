@@ -16,7 +16,7 @@ export const Layout = ({ children }) => {
         </Link>
       </header>
 
-      <main className="py-5 px-3">{children}</main>
+      <main className="pt-5 pb-20 lg:px-16">{children}</main>
 
       <hr />
       <footer className="flex justify-center pt-5 mb-10">

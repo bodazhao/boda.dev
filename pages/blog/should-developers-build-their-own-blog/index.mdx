@@ -1,0 +1,215 @@
+export const meta = {
+  title: "Should developers build their own blog?",
+  preview: "To build or not to build, that is the question",
+  created: "2020-11-11T00:00:00.000",
+  status: "published",
+  reading_time: 6,
+};
+
+# Should developers build their own blog?
+
+Hello world, this is my first post in a series about starting a blog. If you
+have any feedback, don't be hesitated to [reach out](/about) and let me know
+what you think!
+
+## Why start a blog?
+
+Developers can use blog as a platform to organise personal thoughts, share their
+knowledge, learn from feedbacks and connect with a wider network. It's an
+iterative feedback loop where the writer can learn something new with each post
+they write, identify areas of improvement and over time, develop their own field
+of expertise.
+
+> The best way to learn is to <s>teach</s>, write a blog
+
+Developers can also benefit from the "soft skills" they gain from a writing
+habit: the ability to communicate effectively, the persistence and the
+initiative to demonstrate. As most developers work in a cross-functional team (a
+team mix of engineers, designers, product...), having the ability to communicate
+and share knowledge effectively will not only increase productivities for
+themselves but the entire team. More than often, teams that suffer the most are
+the ones that are _not communicating enough_, especially at a time of remote
+working.
+
+## Ways to blog
+
+But to start a blog, we don't have to build it from scratch. Many great blogging
+platforms offer you a professional look and a great writing experience straight
+out of the box, alongside other perks such as performance and an immediate
+presence in front of a massive userbase. Identify and picking the right set of
+blogging features to start with could be a great help in ensuring that we have a
+lasting and enjoyable blogging experience.
+
+Below is a list of features that I could think of and would like to prioritise,
+and they can roughly be categorised as about the **_content_** or else:
+
+About the content:
+
+- an editor that supports markup (e.g Markdown)
+- instant preview of what the readers will see
+- ability to add code snippets with correct highlights
+- support for rich media types (images, videos, gifs, music...)
+
+Else:
+
+- ability for custom design (typography, colours, layout, dark mode...)
+- advanced features like tags, search, comments
+- enable discoveries by RSS, newsletters, i18n, SEO
+- analytics, performance, caching and low maintenance efforts
+
+And here are summaries of the few existing platforms I've looked at if I were to
+use them to build my blog
+
+**WordPress**
+
+WordPress is an open-source content management system (CMS) that claims to host
+38% of the internet today. You can install it on your server or pay a minimal
+fee and use the hosted version. With a matured platform like WordPress, you can
+start blogging today and know that you can extend the functionalities later with
+WordPress' extensive ecosystem.
+
+However, WordPress's unique ecosystem also has its downside. If you want to
+adjust the site to be as flexible as you want, you either have to rely on
+plugins (which could be bloated or have to pay to use) or dig into its
+documentation and spend a significant time to learn about how WordPress itself
+works.
+
+**Medium**
+
+Medium is a well-known platform for bloggers, and requires no self-hosting or
+worry about security/updates. People often choose Medium for its zero
+maintenance efforts and massive userbase
+([60 million monthly active users](https://www.businessinsider.com/inside-the-meltdown-of-evan-williams-startup-medium-2017-2)).
+
+Although Medium has a great reach, the platform often suggests the writers to
+pay to promote their content to potential readers (like a social media
+platform), and the site visitors are often limited/asked to subscribe first
+before they read the contents. This business model left Medium with a bad
+reputation in the community as the "Great Paywall" platform and it's often
+considered a [lesser](https://github.com/mathieudutour/medium-to-own-blog)
+[ideal](https://news.ycombinator.com/item?id=24942037) platform for developer
+resources.
+
+**Ghost**
+
+Ghost is similar to WordPress, as in you can install it locally or use pay to
+use its hosted version. It's feature-rich and unlike WordPress (a CMS you can
+extend into any type of website), Ghost is designed for specifically for
+bloggers. It provides useful features such as low maintenance, newsletters, SEO
+and third-party integrations. And unlike Medium, it doesn't have a "paywall"
+reputation (although it does offer a membership feature that can be enabled by
+the site owner).
+
+Like WordPress, Ghost is also developer-friendly. As seen on their website:
+_"The entire platform can be modified and customised to suit your needs. It's
+very powerful but does require some knowledge of code. Ghost is not necessarily
+a good platform for beginners or people who just want a simple personal blog"_.
+During my first impression with Ghost, I found myself dissatisfied with the
+limitation of the provided themes and had to edit the theme's source code (in
+the Handlebars templating language). The hosted version of Ghost is also
+relatively high (currently at \$36/month), it is the most expensive hosted
+option I've looked into.
+
+**Notion**
+
+Technically Notion is a note-taking software for personal and teams, but it
+offers the best overall writing UX experience I had to consider it as a blogging
+alternative.
+
+To use Notion as a blog, you just have to publish your pages publicly and then
+it can be accessed as a Notion site on the internet. But Notion is still a
+proprietary software and the customisations are limited. Currently, there are
+services like [super.so](https://super.so/) who can enhance your Notion
+experience with custom domains and typography but hopefully, we (the users) can
+have more freedom with the software when Notion
+[improves its API](https://www.notion.so/Does-Notion-have-an-API-I-can-use-4541b07a5caa46dba0026624646118c0).
+
+**Developer forums**
+
+My last considerations are developer forums/websites like CSS Tricks, Smashing
+Magazine, Digital Ocean Community, Hacker Noon, Dev.to...
+
+These are great choices if you want to reach out to a wide audience like Medium,
+they are helpful on building an online presence and you could share tutorials or
+quick guides and help developers like you out. Some of these platforms (like CSS
+Tricks or Smashing Magazine) will require an approval system where you submit
+your content first before you post on theirs, so for absolute beginners who are
+just starting to blog, they should have a blog and presence elsewhere first.
+
+## Build a blog
+
+If you were to build your own blog, static website generators are becoming the
+de facto technology to use. You can serve pages and assets as pre-generated
+files, which allows for features such as cache over CDN, security and fast
+loading performance. As I am a JavaScript/React developer, I will briefly talk
+about the two popular React framework people use to build a performant static
+blog today.
+
+**Gatsby**
+
+Gatsby is a React framework famous for its focus on excellent static site
+generation (SSG), built-in best practices, GraphQL and rich ecosystem of
+plugins. Developers can pick a starter template and instantly deploy
+feature-rich websites that load in milliseconds on modern hosting platforms like
+Netlify.
+
+**Next.js**
+
+Next was introduced to the React ecosystem as a server-side rendering (SSR)
+framework (contrary to the single-page applications (SPA) use of React). From
+version 9.3, Next introduced support for SSG, making it a top competitor against
+Gatsby and allowing developers to pick a hybrid strategy (SSR/SSG) that fits
+their use cases on a per-page basis.
+
+Both Gatsby and Next are popular among developers because they are frameworks
+that offer more than React does. A framework can save you time from managing
+toolings such as bundlers, routing to enabling best practices like performances,
+image optimisation and caching out of the box. But no matter which technology we
+choose, there are up and downs we need to consider when building a blog from
+scratch.
+
+**Advantages of building a blog**
+
+As a web developer, the biggest advantage of building a blog from scratch is
+that you have the skillsets to **build the exact website** you want. Everything
+can be customised from the design to features to the numbers of bytes to send to
+the users.
+
+It will be a learning experience too, as every feature you wish to implement
+(whether design or performance-related) will require thoughts, planning and
+actions by you. You may have to learn the basics again like how does Markdown
+actually translate to HTML or advanced features like implementing tags/search.
+But a blog can be shown as a side-project that demonstrates you technical
+abilities, alongside the content that you write.
+
+**Drawbacks of building a blog**
+
+The biggest drawback of building a blog will be **time**.
+
+It will take time to build the site and it will take time to maintain. For
+beginners, it is recommended to keep it simple, focus on the content first and
+only develop features that are necessary to the browsing experience. But as the
+site grows, it is only natural to add more features, and every feature will take
+its own time to research, plan, execute and maintenance.
+
+Also, be prepared to update/revisit the code. Libraries will be updated with new
+features, dependencies will go out of date, vulnerabilities will be found,
+third-party integrations will change and you will take time away from the
+writing to fix the code again.
+
+Lastly, many people give up early on their blog due to the lack of feedbacks and
+visits, so if you want a successful blog, besides building the platform, write
+the content, you will also have to put efforts in attracting readers. This could
+be more difficult when compared to Medium or developer forums, as you will most
+likely have to spend time to do self-marketing through different channels like
+social media or [post once, syndicate elsewhere](https://indieweb.org/POSSE).
+
+## Summary
+
+Are you a developer who wants to focus on the **content** and publish often?
+
+If so, **no**. Use an existing platform or at least a starter template.
+
+Are you a developer who wants to **learn a lot** and have the time?
+
+If so, **yes**. Good luck and have fun!

@@ -7,10 +7,15 @@ function sortDesc(a, b) {
 }
 
 function importAll(r): ImportedPost[] {
-  return r.keys().map((fileName) => ({
-    path: fileName.substr(1).replace(/\/index\.mdx$/, ""),
-    module: r(fileName),
-  }));
+  return r.keys().map((fileName) => {
+    const path = fileName.substr(1).replace(/\/index\.mdx$/, "");
+    const module = r(fileName);
+
+    return {
+      path,
+      module,
+    };
+  });
 }
 
 // https://webpack.js.org/guides/dependency-management/#requirecontext

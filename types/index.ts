@@ -1,8 +1,9 @@
 export type Meta = {
   title: string;
-  preview: string;
   created: string;
   status: "draft" | "published";
+  preview?: string;
+  reading_time?: number;
 };
 
 export type ImportedPost = {
