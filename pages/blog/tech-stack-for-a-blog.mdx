@@ -1,0 +1,262 @@
+export const meta = {
+  title: "Tech Stack For A Blog",
+  preview: "Spoilers: MDX, Next.js, Tailwind CSS and TypeScript",
+  created: "2020-11-15T00:00:00.000",
+  status: "published",
+  reading_time: 4,
+};
+
+# Tech Stack For A Blog
+
+Continuing from
+"[should developers build their own blog?](/blog/should-developers-build-their-own-blog)",
+here are a more technical breakdown of the main technologies I've decided to use
+to build my blog
+
+- Markdown/MDX
+- Next.js
+- Tailwind CSS
+- TypeScript
+
+## Markdown/MDX
+
+Markdown focuses on the **content**. You can learn it in
+[60 seconds](https://commonmark.org/help/), and start formatting text with
+simple markups like # for headers, \* for bold or \_ for italics and the text
+will get rendered on the page as corresponding HTML elements. It's popular among
+developers because it's easier to write than HTML and more expressive than pure
+text.
+
+Take the following Markdown text
+
+```md
+## This is a Markdown heading
+
+And the content can be **bold** or _italics_
+```
+
+And it will be compiled down to HTML as
+
+```html
+<h2>This is a Markdown heading</h2>
+<p>And the content can be <strong>bold</strong> or <em>italics</em></p>
+```
+
+**MDX**
+
+And for React developers, they can even extend Markdown's simplicity with the
+power of JSX. In other words, in the same file, we can use Markdown for the
+content and use React/JSX components for any other use cases.
+
+An example could be integrating a calendar component in between Markdown text
+
+```md
+## Book appointment
+
+<ReactCalendarComponent />
+
+**How does the booking process work?**
+```
+
+Whereas the typical React/JSX code of the above snippet would look like
+
+```jsx
+function App() {
+  return (
+    <div>
+      <h2>Book appointment</h2>
+      <ReactCalendarComponent />
+      <strong>How does the booking process work?</strong>
+    </div>
+  );
+}
+```
+
+Notice how much cleaner and fast it is to write in MDX?
+
+**How does MDX actually work?**
+
+So if MDX can do the job for React/JSX, Markdown and HTML, how does it actually
+work? Is it a new text format like Markdown or it is something else magical?
+
+Luckily Cole Bemis already answered this question for us in his
+[excellent talk](https://egghead.io/talks/mdx-demystifying-mdx), so I'd highly
+recommend people who have questions to give it a watch.
+
+To summarise:
+
+> MDX (the library), at its core, is a function and accepts a MDX string and
+> returns a JSX string.
+
+And you can visualise the process from MDX to HTML as so
+
+![MDX to JSX to HTML](/mdx-jsx-html.png) _screenshot from
+[Demystifying MDX](https://egghead.io/talks/mdx-demystifying-mdx)_
+
+## Next.js
+
+There are many production-ready
+[static site generators](https://jamstack.org/generators/) to choose from, but
+the two popular choices in the JavaScript/React ecosystem are Next.js and
+Gatsby. I've briefly mentioned them in
+"[should developers build their own blog?](/blog/should-developers-build-their-own-blog)",
+and here I'll summarise the reasons why I picked Next.js
+
+**Server differences**
+
+As of version 10, Next supports the following development paradigms:
+
+- Server Side Rendering (SSR)
+- Static Site Generation (SSG)
+- Client Side Rendering (classic use of React)
+
+Gatsby supports the above three paradigms too, but its SSR approach is slightly
+different than Next. A typical server-side rendering creates the HTML file at
+_run time_ (when the server receives request), but Gatsby creates the HTML file
+at _build time_ (when source files are being compiled).
+
+Another example of how Gatsby server works differently is reading local files.
+In Gatsby, you'll need to install plugins like `gatsby-source-filesystem` but
+with Next you can just use the native Node.js modules `fs`.
+
+**Simpler API**
+
+Currently, you'll only need to learn two API methods for SSG in Next
+
+- `getStaticProps` - get page **content** from external data
+- `getStaticPaths` - get page **paths** from external data
+
+> External data can be data from local files, databases or third-party services
+> like Firebase/Airtable/Contentful.
+
+Whereas in Gatsby, the
+[lifecycle APIs](https://www.gatsbyjs.com/docs/gatsby-lifecycle-apis/) for data
+sources are more complex and often requires its own plugin (e.g
+`gatsby-source-filesystem` or `gatsby-source-contentful`), configurations (e.g
+`gatsby-config.js`) and GraphQL.
+
+**What would make me choose Gatsby?**
+
+Gatsby shines with its extensive plugin ecosystem (currently
+[2000+](https://www.gatsbyjs.com/plugins/), ranging from JSON transformer,
+analytics to Shopify integration), this could be a big time saver when compared
+to Next.
+
+Gatsby is also opinionated about using GraphQL as its default data fetching
+strategy, whereas in Next you are flexible to pick your own data fetching
+solution and GraphQL is only one of its many supported options.
+
+GraphQL may be overkill for smaller projects, but once the project exceeds
+certain complexities, the benefits of adopting GraphQL are significant. GraphQL
+can fetch only the data we need (not whatever an API returns), perform useful
+data transformations (e.g from date string to formatted string), define schemas
+and more. In the future, if I wanted to learn GraphQL or have a project with
+complex requirements, I would pick Gatsby over Next.
+
+## Tailwind CSS
+
+There are many ways of adding styles to React components, we could use pre-made
+component libraries such as Ant Design or Chakra UI to kick start the project
+quickly, or make our own components and add styles with utility-class libraries
+like Tachyons or Tailwind CSS.
+
+**Just the "CSS"**
+
+While component libraries can offer us polished components like card, dropdown
+or even layouts out of the box, we often find ourselves fighting their defaults
+or customising behaviours on top of theirs. I picked Tailwind because I wanted
+to write my own components and just want to have a low level library to help me
+design faster.
+
+_why don't I use another utility library or just write vanilla css instead?_
+
+When compared to other utility libraries or writing vanilla CSS, Tailwind offers
+the following advantages:
+
+- Tailwind has done the hardest part for you - the namings!
+- Tailwind has great defaults (responsive, pseudo-class, built in design
+  principles)
+- Tailwind has a great developer experience (editor intergrations, great
+  documentation site with plenty resources, a community of developers/designers)
+- Popularity (over 2 millions downloads per month) and constantly being updated,
+  it is argubly the most popular utility library to use today
+- Premium [Tailwind UI](https://tailwindui.com/) components for an even faster
+  development experience
+
+**Markup**
+
+People will often point out that Tailwind markups can get out of control and
+does not follow the "seperation of concerns" paradigm
+
+```jsx
+// button.jsx
+function Button() {
+  return (
+    // This many class names just for one button? 😱
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      Button
+    </button>
+  );
+}
+```
+
+That is one way of using Tailwind, but if you want a more component-based
+approach like React, you can extract out any repetitive styles into their own
+classes in a seperate file
+
+```css
+/* button.css */
+@layer components {
+  .btn {
+    @apply font-bold py-2 px-4 rounded;
+  }
+
+  .btn-blue {
+    @apply bg-blue-500 text-white;
+  }
+  .btn-blue:hover {
+    @apply bg-blue-700;
+  }
+}
+```
+
+> The `@layer` is a Tailwind directive, it is being used to instruct Tailwind to
+> consider those styles when purging (removal of un-used CSS from bundles)
+
+And now the component looks like so
+
+```jsx
+// button.jsx
+function Button() {
+  return <button class="btn btn-blue">Button</button>;
+}
+```
+
+To summarise, with Tailwind you can:
+
+1. fast protyping with utility class names
+2. extract common patterns into components when necessary
+3. even publish your Tailwind components as
+   [plugins](https://tailwindcss.com/docs/plugins), e.g
+   [tailwindcss-dark-mode](https://github.com/ChanceArthur/tailwindcss-dark-mode)
+
+## TypeScript
+
+If you are a JavaScript developer (or not), you probably already heard of
+TypeScript. In recent years, TypeScript has become a developer must-have, from
+ranking 2nd most loved langauge in
+[StackOverflow 2020 survey](https://insights.stackoverflow.com/survey/2020#most-loved-dreaded-and-wanted)
+to being adopted as the main langauge for [Deno](https://deno.land/) (Node.js
+creator's successor project), and there are good reasons for it. TypeScript
+allows type checking in JavaScript, can compile to different targets like Babel,
+focus on developer experiences and encourage for best practices like
+auto-completion or linting and so much more.
+
+For this project, I want to use TypeScript whenever possible. In fact, all the
+technologies I've listed in this post either have first-class support for
+TypeScript or are itself built with TypeScript.
+
+---
+
+In the future, I plan to write a more technical step by step guide on how I
+built this blog, but for now, you can view the source code here

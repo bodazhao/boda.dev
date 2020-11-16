@@ -8,7 +8,8 @@ function sortDesc(a, b) {
 
 function importAll(r): ImportedPost[] {
   return r.keys().map((fileName) => {
-    const path = fileName.substr(1).replace(/\/index\.mdx$/, "");
+    // from ./building-a-markdown-blog.mdx to /building-a-markdown-blog
+    const path = fileName.substr(1).replace(/\.mdx$/, "");
     const module = r(fileName);
 
     return {
