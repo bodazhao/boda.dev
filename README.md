@@ -1,6 +1,6 @@
 # README
 
-New blog
+New website
 
 ## Get Started
 
