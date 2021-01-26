@@ -30,7 +30,13 @@ function Home() {
           const url = hasNoLink ? comments : stories[0].url;
 
           return (
-            <div key={the_day} className="flex flex-wrap mb-3">
+            <div
+              key={the_day}
+              className="flex flex-wrap mb-3"
+              style={{
+                minHeight: "32px",
+              }}
+            >
               <p className="mr-3 text-gray-400">
                 {the_day.split("-").slice(1).join("-")}
               </p>
