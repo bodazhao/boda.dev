@@ -22,25 +22,32 @@ function Home() {
     <Layout>
       <h1 className="text-2xl font-bold mb-3">2020</h1>
 
-      {top1Story.map(({ the_day, stories }) => {
-        const comments = `https://news.ycombinator.com/item?id=${stories[0].id}`;
-        const hasNoLink = stories[0].url === null;
-        const url = hasNoLink ? comments : stories[0].url;
+      <div className="px-1">
+        {top1Story.map(({ the_day, stories }) => {
+          const comments = `https://news.ycombinator.com/item?id=${stories[0].id}`;
+          const hasNoLink = stories[0].url === null;
+          // url can be external link or HN thead
+          const url = hasNoLink ? comments : stories[0].url;
 
-        return (
-          <div className="flex flex-wrap mb-3" key={the_day}>
-            <p className="mr-3 text-gray-400">
-              {the_day.split("-").slice(1).join("-")}
-            </p>
+          return (
+            <div key={the_day} className="flex flex-wrap mb-3">
+              <p className="mr-3 text-gray-400">
+                {the_day.split("-").slice(1).join("-")}
+              </p>
 
-            <a href={url} className="mr-2">
-              {stories[0].title}
-            </a>
+              <a href={url} className="mr-2 flex-1">
+                {stories[0].title}
+              </a>
 
-            {!hasNoLink && <a href={comments}>💬</a>}
-          </div>
-        );
-      })}
+              {!hasNoLink && (
+                <a href={comments} className="text-2xl">
+                  💬
+                </a>
+              )}
+            </div>
+          );
+        })}
+      </div>
     </Layout>
   );
 }
