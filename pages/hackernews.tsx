@@ -22,7 +22,7 @@ function Home() {
     <Layout>
       <h1 className="text-2xl font-bold mb-3">2020</h1>
 
-      <div className="px-1">
+      <div className="pr-1">
         {top1Story.map(({ the_day, stories }) => {
           const comments = `https://news.ycombinator.com/item?id=${stories[0].id}`;
           const hasNoLink = stories[0].url === null;
