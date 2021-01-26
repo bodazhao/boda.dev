@@ -41,7 +41,7 @@ export const formatDate = (dateString) => {
   const isThisYear = date.getFullYear() === new Date().getFullYear();
   let option: Option = {
     day: "2-digit",
-    month: "long",
+    month: "short",
   };
 
   if (!isThisYear) {
