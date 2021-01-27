@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 import { Layout } from "@/components"
 import db from "@/data/hackernews.json"
@@ -10,15 +10,6 @@ let topStories = db.map(({ the_day, stories }) => ({
   the_day,
   stories: stories.sort((a, b) => parseInt(b.score) - parseInt(a.score)),
 }))
-
-if (typeof window !== "undefined") {
-  if (window.localStorage.getItem("hnList")) {
-    // exclude stories from existing localStorage row
-    topStories = topStories.filter(
-      (e) => !window.localStorage.getItem("hnList").includes(e.the_day)
-    )
-  }
-}
 
 function checkDay(day) {
   // avoid SSR :/
@@ -47,6 +38,19 @@ function checkDay(day) {
 function Home() {
   const [stories, setStories] = useState(topStories)
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (window.localStorage.getItem("hnList")) {
+        // exclude stories based off the existing localStorage data
+        setStories((prev) =>
+          prev.filter(
+            (e) => !window.localStorage.getItem("hnList").includes(e.the_day)
+          )
+        )
+      }
+    }
+  }, [])
+
   return (
     <Layout>
       <div className="flex items-center">
@@ -62,6 +66,13 @@ function Home() {
           // url can be external link or HN thead
           const url = hasNoLink ? comments : topStory.url
 
+          const onCheckboxClick = () => {
+            const checkedStories = checkDay(the_day)
+            return setStories((prev) =>
+              prev.filter((e) => !checkedStories.includes(e.the_day))
+            )
+          }
+
           return (
             <div
               key={the_day}
@@ -71,12 +82,7 @@ function Home() {
               <input
                 type="checkbox"
                 className="mr-2 md:mr-3"
-                onClick={() => {
-                  const checkedStories = checkDay(the_day)
-                  setStories((prev) =>
-                    prev.filter((e) => !checkedStories.includes(e.the_day))
-                  )
-                }}
+                onClick={onCheckboxClick}
               />
 
               <a href={url} className="flex-1">
