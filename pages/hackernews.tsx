@@ -2,20 +2,12 @@ import { Layout } from "@/components";
 import db from "@/data/hackernews.json";
 
 /**
- * get top X stories from each day, e.g 1, 3, 5, 10 up to 30
+ * sort stories (by scores) from each day
  */
-function getTopStoryOf(num) {
-  return db.map(({ the_day, stories }) => ({
-    the_day,
-    stories: [
-      stories.sort((a, b) => {
-        return parseInt(b.score) - parseInt(a.score);
-      })[num - 1],
-    ],
-  }));
-}
-
-const top1Story = getTopStoryOf(1);
+const topStories = db.map(({ the_day, stories }) => ({
+  the_day,
+  stories: stories.sort((a, b) => parseInt(b.score) - parseInt(a.score)),
+}));
 
 function Home() {
   return (
@@ -23,33 +15,32 @@ function Home() {
       <h1 className="text-2xl font-bold mb-3">2020</h1>
 
       <div className="pr-1">
-        {top1Story.map(({ the_day, stories }) => {
-          const comments = `https://news.ycombinator.com/item?id=${stories[0].id}`;
-          const hasNoLink = stories[0].url === null;
+        {topStories.map(({ the_day, stories }) => {
+          const topStory = stories[0];
+          const comments = `https://news.ycombinator.com/item?id=${topStory.id}`;
+          const hasNoLink = topStory.url === null;
           // url can be external link or HN thead
-          const url = hasNoLink ? comments : stories[0].url;
+          const url = hasNoLink ? comments : topStory.url;
 
           return (
             <div
               key={the_day}
-              className="flex flex-wrap mb-3"
-              style={{
-                minHeight: "32px",
-              }}
+              className="flex flex-wrap items-center mb-3"
+              style={{ minHeight: "32px" }}
             >
-              <p className="mr-3 text-gray-400">
-                {the_day.split("-").slice(1).join("-")}
-              </p>
+              <input type="checkbox" className="mr-2 md:mr-3" />
 
-              <a href={url} className="mr-2 flex-1">
-                {stories[0].title}
+              <a href={url} className="flex-1">
+                {topStory.title}
               </a>
 
-              {!hasNoLink && (
-                <a href={comments} className="text-2xl">
-                  💬
-                </a>
-              )}
+              <a
+                href={comments}
+                className="text-gray-400"
+                style={{ borderBottom: "1px dotted orange" }}
+              >
+                {the_day.split("-").slice(1).join("-")}
+              </a>
             </div>
           );
         })}
