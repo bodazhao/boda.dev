@@ -20,7 +20,7 @@ const Card = ({ post }: { post: ImportedPost }) => {
 
       <div className="flex-1">
         <Link href={"/blog" + path}>
-          <a className="text-xl md:text-3xl">{meta.title}</a>
+          <a className="text-xl md:text-2xl">{meta.title}</a>
         </Link>
         <p className="text-gray-400 pt-1">{meta.preview}</p>
       </div>

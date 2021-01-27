@@ -3,15 +3,22 @@ import { Layout, BlogList } from "@/components";
 function Home() {
   return (
     <Layout>
-      <h1 className="text-5xl mb-3">Projects</h1>
-      <div className="mb-10">
-        <p className="text-xl mb-2">
-          <a href="/hackernews">Hacker News</a>
-        </p>
-      </div>
+      <section className="mb-32">
+        <h1 className="text-4xl font-bold mb-5">Projects</h1>
 
-      <h1 className="text-5xl mb-3">Blog</h1>
-      <BlogList />
+        <a
+          href="/hackernews"
+          className="text-xl mb-2 pl-3"
+          style={{ borderLeft: "10px solid blue" }}
+        >
+          Hacker News (2020)
+        </a>
+      </section>
+
+      <section>
+        <h1 className="text-4xl font-bold mb-3">Blog</h1>
+        <BlogList />
+      </section>
     </Layout>
   );
 }
