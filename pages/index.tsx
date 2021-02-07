@@ -11,7 +11,7 @@ function Home() {
           className="text-xl mb-2 pl-3"
           style={{ borderLeft: "10px solid blue" }}
         >
-          Hacker News (2020)
+          Hacker News (WIP)
         </a>
       </section>
 
