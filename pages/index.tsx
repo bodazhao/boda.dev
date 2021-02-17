@@ -7,11 +7,11 @@ function Home() {
         <h1 className="text-4xl font-bold mb-5">Projects</h1>
 
         <a
-          href="/hackernews"
+          href="https://github.com/bodazhao/hacker-news-headlines"
           className="text-xl mb-2 pl-3"
           style={{ borderLeft: "10px solid blue" }}
         >
-          Hacker News (WIP)
+          Hacker News Headlines
         </a>
       </section>
 
