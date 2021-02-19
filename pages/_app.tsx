@@ -1,8 +1,8 @@
-import Head from "next/head";
-import { MDXProvider } from "@mdx-js/react";
+import Head from "next/head"
+import { MDXProvider } from "@mdx-js/react"
 
-import "../styles/index.css";
-import { Layout, CodeBlock } from "@/components";
+import "../styles/index.css"
+import { Layout, CodeBlock } from "@/components"
 
 // Global markdown wrapper. To override wrapper for a single entry point
 // at the page level, see https://mdxjs.com/getting-started#default-exports
@@ -13,7 +13,7 @@ const Wrapper = (props) => (
       {props.children}
     </article>
   </Layout>
-);
+)
 
 const mdComponents = {
   wrapper: Wrapper,
@@ -23,7 +23,7 @@ const mdComponents = {
   // p: (props) => <p {...props} />,
   pre: (props) => <div {...props} />,
   code: CodeBlock,
-};
+}
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -36,7 +36,7 @@ function MyApp({ Component, pageProps }) {
          */}
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>boda.dev | A Developer's Blog</title>
+        <title>boda.dev</title>
         <link rel="icon" href="/terminal.svg" />
       </Head>
 
@@ -44,7 +44,7 @@ function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
       </MDXProvider>
     </>
-  );
+  )
 }
 
-export default MyApp;
+export default MyApp

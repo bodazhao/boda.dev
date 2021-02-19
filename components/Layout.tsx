@@ -1,34 +1,35 @@
-import Link from "next/link";
-import { BsTerminal, BsArrowUp } from "react-icons/bs";
+import Link from "next/link"
+import { BsArrowUp } from "react-icons/bs"
 
-export const Layout = ({ children }) => {
+export const Layout = ({
+  children,
+  hideFooter,
+}: {
+  children: JSX.Element | JSX.Element[]
+  hideFooter?: boolean
+}) => {
   return (
-    <div className="px-3 m-auto max-w-4xl">
+    <div className="px-5 m-auto max-w-4xl">
       <header className="flex justify-between items-center py-5 lg:py-10">
         <Link href="/">
-          <a>
-            <BsTerminal size={30} />
-          </a>
-        </Link>
-
-        <Link href="/about">
-          <a className="underline text-gray-700">about</a>
+          <a className="text-3xl">boda.dev</a>
         </Link>
       </header>
 
       <main className="pt-5 pb-20 lg:px-16">{children}</main>
 
-      <hr />
-      <footer className="flex justify-center pt-5 mb-10">
-        <button>
-          <BsArrowUp
-            size={20}
-            onClick={() => {
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
-          />
-        </button>
-      </footer>
+      {!hideFooter && (
+        <footer className="flex justify-center pt-5 mb-10">
+          <button>
+            <BsArrowUp
+              size={20}
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: "smooth" })
+              }}
+            />
+          </button>
+        </footer>
+      )}
     </div>
-  );
-};
+  )
+}
